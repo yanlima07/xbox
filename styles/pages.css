@@ -59,7 +59,6 @@
   flex-direction: column;
   height: 100%;
   width: 50%;
-  background-color: yellow;
 }
 
 .rightSide .gamepass {
@@ -67,19 +66,55 @@
   flex-direction: row;
   height: 35%;
   margin: 2.5px;
-  background-color: green;
+  background-color: #107c10;
+  overflow: hidden;
+}
+
+.gamepass .gamepassImage {
+  display: inherit;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.gamepassImage img {
+  min-width: 100%;
+}
+
+.gamepass .gamepassText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 40px;
+  width: 50%;
 }
 
 .rightSide .controller {
   display: inherit;
   flex-direction: inherit;
+  justify-content: flex-end;
   height: 65%;
   margin: 2.5px;
-  padding: 45px;
+  padding: 45px 45px 100px 45px;
   background-image: url(../assets/controller.jpg);
   background-size: cover;
 }
 
+.rightSide .controller h1 {
+  color: black;
+}
+
+.rightSide .controller h3 {
+  color: black;
+}
+
+.controller .black {
+  color: black;
+}
+
+.controller .blackArrow {
+  filter: brightness(0);
+}
 .pages h1 {
   font-size: 46px;
   font-weight: 700;
@@ -92,7 +127,6 @@
   font-weight: 700;
   color: white;
   letter-spacing: -0.5px;
-  margin-bottom: 50px;
 }
 
 .pages h3 {
@@ -115,9 +149,13 @@
 .pages a:hover {
   color: #9bf00b;
   text-decoration: underline;
-  text-decoration-color: #107c10;
+  text-decoration-color: #9bf00b;
   text-underline-offset: 5px;
   text-decoration-thickness: 2px;
+}
+
+.pages .spacer {
+  margin-top: 50px;
 }
 
 .pages a img {

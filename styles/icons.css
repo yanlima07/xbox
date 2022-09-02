@@ -1,0 +1,47 @@
+.icons {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0px;
+  margin-bottom: 10px;
+  background-color: white;
+}
+
+.icons ul {
+  display: inherit;
+  flex-direction: inherit;
+  list-style: none;
+}
+
+.icons li {
+  display: inherit;
+  flex-direction: column;
+}
+
+.icons a {
+  display: inherit;
+  flex-direction: inherit;
+  align-items: center;
+  width: 90px;
+  margin: 0px 35px;
+  text-decoration: none;
+}
+
+.icons a:hover {
+  text-decoration: underline;
+  text-decoration-color: #107c10;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 2px;
+}
+
+.icons h1 {
+  color: #107c10;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.icons img {
+  width: 70px;
+}

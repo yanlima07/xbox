@@ -1,0 +1,128 @@
+.pages {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 7.5px;
+  height: 160vh;
+}
+
+.pages .leftSide {
+  display: inherit;
+  flex-direction: column;
+  height: 100%;
+  width: 50%;
+}
+
+.leftSide .jojo {
+  display: inherit;
+  flex-direction: inherit;
+  justify-content: flex-end;
+  height: 65%;
+  margin: 2.5px;
+  padding: 45px 45px 60px 45px;
+  background-image: url(../assets/jojo.jpg);
+  background-size: cover;
+}
+
+.leftSide .high {
+  display: inherit;
+  flex-direction: row;
+  height: 35%;
+  margin: 2.5px;
+  background-color: #107c10;
+  overflow: hidden;
+}
+
+.high .highImage {
+  display: inherit;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.highImage img {
+  min-width: 100%;
+}
+
+.high .highText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 40px;
+  width: 50%;
+}
+
+.pages .rightSide {
+  display: inherit;
+  flex-direction: column;
+  height: 100%;
+  width: 50%;
+  background-color: yellow;
+}
+
+.rightSide .gamepass {
+  display: inherit;
+  flex-direction: row;
+  height: 35%;
+  margin: 2.5px;
+  background-color: green;
+}
+
+.rightSide .controller {
+  display: inherit;
+  flex-direction: inherit;
+  height: 65%;
+  margin: 2.5px;
+  padding: 45px;
+  background-image: url(../assets/controller.jpg);
+  background-size: cover;
+}
+
+.pages h1 {
+  font-size: 46px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.5px;
+}
+
+.pages h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.5px;
+  margin-bottom: 50px;
+}
+
+.pages h3 {
+  font-size: 20px;
+  font-weight: normal;
+  color: white;
+  margin: 20px 0px;
+}
+
+.pages a {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  font-size: 15px;
+  font-weight: 800;
+  color: white;
+  text-decoration: none;
+}
+
+.pages a:hover {
+  color: #9bf00b;
+  text-decoration: underline;
+  text-decoration-color: #107c10;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 2px;
+}
+
+.pages a img {
+  filter: invert(1) brightness(2);
+  transform: rotate(180deg);
+  height: 12px;
+  margin-left: 10px;
+}

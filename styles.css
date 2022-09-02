@@ -100,7 +100,7 @@ header .navRight {
   width: 100vw;
   height: 71vh;
 
-  background-image: url("../assets/banner.jpg");
+  background-image: url("assets/banner.jpg");
   background-size: cover;
 }
 

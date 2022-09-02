@@ -8,7 +8,7 @@
   width: 100vw;
   height: 71vh;
 
-  background-image: url("assets/deathStranding.jpg");
+  background-image: url("../assets/deathStranding.jpg");
   background-size: cover;
   overflow: hidden;
 }

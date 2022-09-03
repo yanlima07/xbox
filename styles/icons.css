@@ -46,8 +46,27 @@
   width: 70px;
 }
 
-@media (orientation: portrait) {
+@media (max-width: 1360px) {
   .icons {
-    display: none;
+    width: 100vw;
+    height: auto;
+    padding: 15px 0px;
+    margin-bottom: 10px;
+  }
+
+  .icons ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100vw;
+  }
+
+  .icons a {
+    margin: 15px 15px;
+  }
+
+  .icons img {
+    width: 55px;
   }
 }

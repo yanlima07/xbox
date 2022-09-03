@@ -163,7 +163,7 @@
   background-color: #ffffff !important;
 }
 
-@media (orientation: portrait) {
+@media (max-width: 1360px) {
   .swipe .left {
     display: none;
   }

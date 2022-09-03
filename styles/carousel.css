@@ -56,6 +56,7 @@
 .carousel .texts {
   display: flex;
   flex-direction: column;
+  width: 450px;
   margin-right: 60vw;
 }
 
@@ -160,4 +161,38 @@
 
 .circles .third {
   background-color: #ffffff !important;
+}
+
+@media (orientation: portrait) {
+  .swipe .left {
+    display: none;
+  }
+
+  .swipe .right {
+    display: none;
+  }
+
+  .carousel {
+    width: 100vw;
+    height: 80vh;
+    background-image: url(../assets/bannerMobile.jpg);
+    background-size: cover;
+  }
+
+  .carousel .texts {
+    align-items: center;
+    align-self: flex-end;
+    margin-bottom: 110px;
+    margin-right: 0vw;
+    width: 300px;
+  }
+
+  .carousel h1 {
+    font-size: 26px;
+    padding: 15px 0px;
+  }
+
+  .carousel h2 {
+    font-size: 15px;
+  }
 }

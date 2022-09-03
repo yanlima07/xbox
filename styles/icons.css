@@ -45,3 +45,9 @@
 .icons img {
   width: 70px;
 }
+
+@media (orientation: portrait) {
+  .icons {
+    display: none;
+  }
+}

@@ -6,6 +6,7 @@
   align-items: center;
   padding: 0px 7.5px;
   height: 160vh;
+  background-color: white;
 }
 
 .pages .leftSide {
@@ -163,4 +164,10 @@
   transform: rotate(180deg);
   height: 12px;
   margin-left: 10px;
+}
+
+@media (orientation: portrait) {
+  .pages {
+    display: none;
+  }
 }

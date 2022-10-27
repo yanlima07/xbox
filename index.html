@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="styles/carousel.css" />
     <link rel="stylesheet" href="styles/icons.css" />
     <link rel="stylesheet" href="styles/pages.css" />
+    <link rel="stylesheet" href="styles/modalLogin.css" />
+    <link rel="stylesheet" href="styles/search.css" />
   </head>
   <body>
     <header>
@@ -65,15 +67,18 @@
                 <img class="arrow" src="assets/arrow.svg" alt="+" />
               </li>
               <li>
-                <h1>Pesquisar</h1>
-                <img class="zoom" src="assets/zoom.svg" alt="+" />
+                <a href="#search">
+                  <h1>Pesquisar</h1>
+                  <img class="zoom" src="assets/zoom.svg" alt="+" />
+                </a>
               </li>
               <li>
                 <h1>Carrinho</h1>
                 <img src="assets/cart.svg" alt="$" class="cart" />
               </li>
               <li>
-                <h1 class="login">Entrar</h1>
+                <h1 class="login" id="entrarLogin">Entrar</h1>
+                <h1 class="logout" id="sairLogout">Sair</h1>
                 <img src="assets/newuser.svg" alt="O" class="user" />
               </li>
             </ul>
@@ -96,7 +101,7 @@
             </li>
             <li class="navRight">
               <img class="cart" src="assets/cart.svg" alt="$" />
-              <h1 class="enter">Entrar</h1>
+              <h1 class="enter" id="entrarLogin">Entrar</h1>
             </li>
           </ul>
         </nav>
@@ -237,5 +242,58 @@
         </div>
       </div>
     </section>
+    <section class="modalLogin" id="modalLogin">
+      <div class="modalBackground" id="modalBackground"></div>
+      <img src="assets/xbox.png" class="xbox" alt="XBOX" />
+      <div class="loginBox">
+        <img class="microsoft" src="assets/microsoft.png" alt="Microsoft" />
+        <h1>Entrar</h1>
+        <form onsubmit="Login(event)">
+          <h2 class="emailProblem" id="emailProblem">
+            Esse endereço de email não pode receber mensagens.
+          </h2>
+          <input
+            required
+            minlength="3"
+            type="email"
+            placeholder="Email"
+            id="email"
+          />
+          <input
+            required
+            minlength="3"
+            type="password"
+            placeholder="Senha"
+            id="password"
+          />
+          <h2>Não tem uma conta? <span class="blueText">Crie uma!</span></h2>
+          <input type="submit" value="Próximo" />
+        </form>
+      </div>
+    </section>
+    <section class="search" id="search">
+      <div class="searchContainer">
+        <h1>Pokémon Search</h1>
+        <div class="searchBarContainer">
+          <input
+            type="search"
+            class="searchBar"
+            id="searchBar"
+            placeholder="Pesquise o Pokémon pelo nome"
+            poke-search
+          />
+          <img src="assets/zoom.svg" alt="pesquisar" class="zoom" />
+        </div>
+      </div>
+      <div class="cardContainer" pokemon-card-container>
+        <template pokemon-card-template>
+          <div class="card">
+            <img class="pokeImage" src="" alt="pokemon" poke-image />
+            <h2 class="pokeName" poke-name></h2>
+          </div>
+        </template>
+      </div>
+    </section>
   </body>
+  <script src="scripts.js"></script>
 </html>

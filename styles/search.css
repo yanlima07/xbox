@@ -1,0 +1,85 @@
+.search {
+  display: none;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  padding-top: 25px;
+  height: 90vh;
+  background-color: white;
+}
+
+.search .searchContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.searchContainer h1 {
+  font-size: 46px;
+  color: #107c10;
+}
+
+.searchContainer .searchBarContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.search .searchBar {
+  height: 34px;
+  width: 90vw;
+  border: none;
+
+  border-bottom: 2px solid #107c10;
+  font-size: 16px;
+  text-align: center;
+}
+
+.search .zoom {
+  position: absolute;
+  right: 4.5vw;
+  height: 16px;
+  transform: translate(0%, 10%);
+  filter: contrast(10%);
+}
+
+.search .cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10px;
+  gap: 20px;
+  width: 90vw;
+}
+
+.search .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  height: 25vh;
+  min-width: 180px;
+  width: 13vw;
+  border: 2.5px solid #107c10;
+  border-radius: 10px;
+}
+
+.card h2 {
+  font-size: 2.5vh;
+  text-transform: capitalize;
+}
+
+.card img {
+  height: 15vh;
+}
+
+.visible {
+  display: flex !important;
+}
+
+.hide {
+  display: none !important;
+}

@@ -70,6 +70,12 @@
   padding-left: 75px;
 }
 
+.navRight a {
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+}
+
 .navRight .zoom {
   width: 17px;
   padding-right: 10px;
@@ -82,8 +88,16 @@
   transform: translate(0%, 10%);
 }
 
-.navRight .login {
-  text-decoration: none !important;
+.navRight li .login {
+  text-decoration: none;
+}
+
+.navRight li .logout {
+  text-decoration: none;
+}
+
+.navRight .hidden {
+  display: none;
 }
 
 .navRight .user {

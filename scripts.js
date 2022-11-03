@@ -62,7 +62,7 @@ function Login(event) {
       "Content-Type": "application/json",
     },
   })
-    .then((response) => response.json())
+    .then((responseAPI) => responseAPI.json())
     .then((dataAPI) => {
       if (dataAPI.is_valid_format.value == true) {
         const data = {
@@ -71,6 +71,7 @@ function Login(event) {
           email: document.getElementById("email").value,
           password: document.getElementById("password").value,
         };
+
         fetch("https://reqres.in/api/login", {
           method: "POST",
           headers: {
@@ -79,12 +80,17 @@ function Login(event) {
           body: JSON.stringify(data),
         })
           .then((response) => response.json())
-          .then((data) => {
-            localStorage.setItem("token", data.token);
-            emailFlag = false;
-            flagHandler();
-            resetInputs();
-            window.location.reload();
+          .then((dataReceived) => {
+            if (dataReceived.token != null) {
+              localStorage.setItem("token", dataReceived.token);
+              emailFlag = false;
+              flagHandler();
+              resetInputs();
+              window.location.reload();
+            } else {
+              emailFlag = true;
+              flagHandler();
+            }
           })
           .catch((error) => {
             console.error("Error:", error);

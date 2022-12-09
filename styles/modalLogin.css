@@ -26,6 +26,17 @@
 }
 
 .modalLogin .loginBox {
+  display: none;
+  z-index: 07012004;
+  width: 350px;
+  padding: 40px;
+  margin-top: 25px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 20%);
+  background-color: white;
+}
+
+.modalLogin .registerBox {
+  display: none;
   z-index: 07012004;
   width: 350px;
   padding: 40px;
@@ -85,4 +96,8 @@
 
 .visible {
   display: flex !important;
+}
+
+.visibleBlock {
+  display: block !important;
 }

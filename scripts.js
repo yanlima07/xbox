@@ -1,5 +1,9 @@
 const modalBackground = document.getElementById("modalBackground");
 const modalLogin = document.getElementById("modalLogin");
+const loginBox = document.getElementById("loginBox");
+const registerBox = document.getElementById("registerBox");
+const toRegisterButton = document.getElementById("toRegisterButton");
+const toLoginButton = document.getElementById("toLoginButton");
 const emailProblem = document.getElementById("emailProblem");
 const entrarLogin = document.getElementById("entrarLogin");
 const sairLogout = document.getElementById("sairLogout");
@@ -23,10 +27,22 @@ function resetInputs() {
 
 entrarLogin.onclick = (e) => {
   modalLogin.classList.toggle("visible");
+  loginBox.classList.toggle("visibleBlock");
+};
+
+toRegisterButton.onclick = (e) => {
+  loginBox.classList.toggle("visibleBlock");
+  registerBox.classList.toggle("visibleBlock");
+};
+
+toLoginButton.onclick = (e) => {
+  loginBox.classList.toggle("visibleBlock");
+  registerBox.classList.toggle("visibleBlock");
 };
 
 modalBackground.onclick = (e) => {
   modalLogin.classList.toggle("visible");
+  loginBox.classList.toggle("visibleBlock");
   emailFlag = false;
   flagHandler();
   resetInputs();

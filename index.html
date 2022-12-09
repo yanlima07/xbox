@@ -245,7 +245,7 @@
     <section class="modalLogin" id="modalLogin">
       <div class="modalBackground" id="modalBackground"></div>
       <img src="assets/xbox.png" class="xbox" alt="XBOX" />
-      <div class="loginBox">
+      <div class="loginBox" id="loginBox">
         <img class="microsoft" src="assets/microsoft.png" alt="Microsoft" />
         <h1>Entrar</h1>
         <form onsubmit="Login(event)">
@@ -266,8 +266,39 @@
             placeholder="Senha"
             id="password"
           />
-          <h2>Não tem uma conta? <span class="blueText">Crie uma!</span></h2>
+          <h2>
+            Não tem uma conta?
+            <span class="blueText" id="toRegisterButton">Crie uma!</span>
+          </h2>
           <input type="submit" value="Próximo" />
+        </form>
+      </div>
+      <div class="registerBox" id="registerBox">
+        <img class="microsoft" src="assets/microsoft.png" alt="Microsoft" />
+        <h1>Cadastrar</h1>
+        <form onsubmit="Cadastrar(event)">
+          <h2 class="emailProblem" id="registerEmailProblem">
+            Esse endereço de email não é válido.
+          </h2>
+          <input
+            required
+            minlength="3"
+            type="email"
+            placeholder="Email"
+            id="registerEmail"
+          />
+          <input
+            required
+            minlength="3"
+            type="password"
+            placeholder="Senha"
+            id="registerPassword"
+          />
+          <h2>
+            Já tem uma conta?
+            <span class="blueText" id="toLoginButton">Faça login!</span>
+          </h2>
+          <input type="submit" value="Cadastrar" />
         </form>
       </div>
     </section>

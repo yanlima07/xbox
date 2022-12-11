@@ -1,0 +1,80 @@
+.searchModal {
+  display: none;
+  position: fixed;
+  z-index: 07012002;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  top: 0px;
+}
+
+.searchModal .searchModalBackground {
+  display: block;
+  position: absolute;
+  z-index: 07012003;
+  height: 100%;
+  width: 100%;
+  background-color: #107c10;
+}
+
+.searchModal .uploadBox {
+  display: block;
+  z-index: 07012004;
+  width: 350px;
+  padding: 40px;
+  margin-top: 25px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 20%);
+  background-color: white;
+}
+
+.searchModal h1 {
+  font-weight: 500;
+}
+
+.searchModal form {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+.searchModal input {
+  height: 34px;
+  border: none;
+  border-bottom: 1.5px solid #006abf;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.searchModal .fileUpload {
+  border-bottom: none;
+  color: white;
+  margin-left: 212px;
+  margin-bottom: 10px;
+}
+
+.searchModal input[type="submit"] {
+  align-self: center;
+  width: 100%;
+  border: none;
+  background-color: #006abf;
+  color: white;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-bottom: 0px;
+}
+
+.searchModal h2 {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.visible {
+  display: flex !important;
+}
+
+.visibleBlock {
+  display: block !important;
+}

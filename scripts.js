@@ -1,10 +1,15 @@
 const modalBackground = document.getElementById("modalBackground");
+const searchModalBackground = document.getElementById("searchModalBackground");
 const modalLogin = document.getElementById("modalLogin");
+const searchModal = document.getElementById("searchModal");
 const loginBox = document.getElementById("loginBox");
 const registerBox = document.getElementById("registerBox");
+const uploadBox = document.getElementById("uploadBox");
 const toRegisterButton = document.getElementById("toRegisterButton");
 const toLoginButton = document.getElementById("toLoginButton");
+const buttonAddPokemon = document.getElementById("buttonAddPokemon");
 const emailProblem = document.getElementById("emailProblem");
+const registerEmailProblem = document.getElementById("registerEmailProblem");
 const entrarLogin = document.getElementById("entrarLogin");
 const sairLogout = document.getElementById("sairLogout");
 
@@ -21,8 +26,11 @@ if (localStorage.getItem("token") == null) {
 }
 
 function resetInputs() {
-  document.getElementById("email").value = "";
-  document.getElementById("password").value = "";
+  document.getElementById("loginEmail").value = "";
+  document.getElementById("loginPassword").value = "";
+  document.getElementById("registerEmail").value = "";
+  document.getElementById("resgisterPassword").value = "";
+  document.getElementById("textUpload").value = "";
 }
 
 entrarLogin.onclick = (e) => {
@@ -48,6 +56,16 @@ modalBackground.onclick = (e) => {
   resetInputs();
 };
 
+buttonAddPokemon.onclick = (e) => {
+  searchModal.classList.toggle("visible");
+};
+
+searchModalBackground.onclick = (e) => {
+  searchModal.classList.toggle("visible");
+  uploadBox.classList.toggle("visibleBlock");
+  resetInputs();
+};
+
 sairLogout.onclick = (e) => {
   localStorage.removeItem("token");
   document.getElementById("entrarLogin").classList.remove("hidden");
@@ -58,59 +76,63 @@ sairLogout.onclick = (e) => {
 function flagHandler() {
   if (emailFlag) {
     emailProblem.classList.add("visible");
+    registerEmailProblem.classList.add("visible");
   } else {
     emailProblem.classList.remove("visible");
+    registerEmailProblem.classList.remove("visible");
   }
+}
+
+function Register(event) {
+  event.preventDefault();
+
+  const emailData = document.getElementById("loginEmail").value;
+  const passwordData = document.getElementById("loginPassword").value;
+
+  const data = { email: emailData, password: passwordData };
+
+  fetch("http://localhost:5500/authenticate/register", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .then((dataReceived) => {
+      if (!dataReceived.error) {
+        localStorage.setItem("token", dataReceived.token);
+        window.location.reload();
+      } else {
+        emailFlag = true;
+        flagHandler();
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 }
 
 function Login(event) {
   event.preventDefault();
 
-  const emailData = document.getElementById("email").value;
+  const emailData = document.getElementById("loginEmail").value;
+  const passwordData = document.getElementById("loginPassword").value;
 
-  const fetchAPI =
-    "https://emailvalidation.abstractapi.com/v1/?api_key=2b2eaffef5bf468d928a7bc822c05cb3&email=" +
-    emailData;
+  const data = { email: emailData, password: passwordData };
 
-  fetch(fetchAPI, {
-    method: "GET",
+  fetch("http://localhost:5500/authenticate/login", {
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
+    body: JSON.stringify(data),
   })
-    .then((responseAPI) => responseAPI.json())
-    .then((dataAPI) => {
-      if (dataAPI.is_valid_format.value == true) {
-        const data = {
-          //email: "eve.holt@reqres.in",
-          //password: "123",
-          email: document.getElementById("email").value,
-          password: document.getElementById("password").value,
-        };
-
-        fetch("https://reqres.in/api/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        })
-          .then((response) => response.json())
-          .then((dataReceived) => {
-            if (dataReceived.token != null) {
-              localStorage.setItem("token", dataReceived.token);
-              emailFlag = false;
-              flagHandler();
-              resetInputs();
-              window.location.reload();
-            } else {
-              emailFlag = true;
-              flagHandler();
-            }
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
+    .then((response) => response.json())
+    .then((dataReceived) => {
+      if (!dataReceived.error) {
+        localStorage.setItem("token", dataReceived.token);
+        window.location.reload();
       } else {
         emailFlag = true;
         flagHandler();
@@ -125,46 +147,46 @@ var pokemonArray = [];
 const pokemonCardTemplate = document.querySelector("[pokemon-card-template]");
 const pokemonCardContainer = document.querySelector("[pokemon-card-container]");
 
-fetch("https://pokeapi.co/api/v2/pokemon?limit=150&offset=0", {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-  },
-})
-  .then((response) => response.json())
-  .then((data) => {
-    pokemonArray = data.results;
-    pokemonMap = pokemonArray.map((pokemon) => {
-      const card = pokemonCardTemplate.content.cloneNode(true).children[0];
-      const pokeName = card.querySelector("[poke-name]");
+// fetch("https://pokeapi.co/api/v2/pokemon?limit=150&offset=0", {
+//   method: "GET",
+//   headers: {
+//     "Content-Type": "application/json",
+//   },
+// })
+//   .then((response) => response.json())
+//   .then((data) => {
+//     pokemonArray = data.results;
+//     pokemonMap = pokemonArray.map((pokemon) => {
+//       const card = pokemonCardTemplate.content.cloneNode(true).children[0];
+//       const pokeName = card.querySelector("[poke-name]");
 
-      pokeName.textContent = pokemon.name;
+//       pokeName.textContent = pokemon.name;
 
-      var pokelink = pokemon.url;
+//       var pokelink = pokemon.url;
 
-      fetch(pokelink, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          const pokeImage = card.querySelector("[poke-image]");
-          pokeImage.src = data.sprites.front_default;
-          pokemonCardContainer.append(card);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
+//       fetch(pokelink, {
+//         method: "GET",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//       })
+//         .then((response) => response.json())
+//         .then((data) => {
+//           const pokeImage = card.querySelector("[poke-image]");
+//           pokeImage.src = data.sprites.front_default;
+//           pokemonCardContainer.append(card);
+//         })
+//         .catch((error) => {
+//           console.error("Error:", error);
+//         });
 
-      return { name: pokemon.name, element: card };
-    });
-  })
+//       return { name: pokemon.name, element: card };
+//     });
+//   })
 
-  .catch((error) => {
-    console.error("Error:", error);
-  });
+//   .catch((error) => {
+//     console.error("Error:", error);
+//   });
 
 var searchInput = document.querySelector("[poke-search]");
 

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="styles/icons.css" />
     <link rel="stylesheet" href="styles/pages.css" />
     <link rel="stylesheet" href="styles/modalLogin.css" />
+    <link rel="stylesheet" href="styles/modalSearch.css" />
     <link rel="stylesheet" href="styles/search.css" />
   </head>
   <body>
@@ -257,14 +258,14 @@
             minlength="3"
             type="email"
             placeholder="Email"
-            id="email"
+            id="loginEmail"
           />
           <input
             required
             minlength="3"
             type="password"
             placeholder="Senha"
-            id="password"
+            id="loginPassword"
           />
           <h2>
             Não tem uma conta?
@@ -276,9 +277,9 @@
       <div class="registerBox" id="registerBox">
         <img class="microsoft" src="assets/microsoft.png" alt="Microsoft" />
         <h1>Cadastrar</h1>
-        <form onsubmit="Cadastrar(event)">
+        <form onsubmit="Register(event)">
           <h2 class="emailProblem" id="registerEmailProblem">
-            Esse endereço de email não é válido.
+            Esse endereço de email já foi cadastrado.
           </h2>
           <input
             required
@@ -303,9 +304,27 @@
       </div>
     </section>
     <section class="search" id="search">
+      <div class="searchModal" id="searchModal">
+        <div class="searchModalBackground" id="searchModalBackground"></div>
+        <div class="uploadBox" id="uploadBox">
+          <h1>Novo Pokémon</h1>
+          <form onsubmit="Upload(event)">
+            <input
+              required
+              minlength="1"
+              type="text"
+              placeholder="Nome"
+              id="textUpload"
+            />
+            <input required type="file" id="fileUpload" class="fileUpload" />
+            <input type="submit" value="Salvar" />
+          </form>
+        </div>
+      </div>
       <div class="searchContainer">
         <h1>Pokémon Search</h1>
         <div class="searchBarContainer">
+          <h1 id="buttonAddPokemon">+</h1>
           <input
             type="search"
             class="searchBar"

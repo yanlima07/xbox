@@ -26,6 +26,15 @@
   align-items: center;
   margin-top: 20px;
   margin-bottom: 20px;
+  background-color: blue;
+}
+
+.searchBarContainer h1 {
+  font-size: 36px;
+  position: absolute;
+  left: 4vw;
+  transform: translate(0%, -10%);
+  cursor: pointer;
 }
 
 .search .searchBar {

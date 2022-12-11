@@ -86,8 +86,8 @@ function flagHandler() {
 function Register(event) {
   event.preventDefault();
 
-  const emailData = document.getElementById("loginEmail").value;
-  const passwordData = document.getElementById("loginPassword").value;
+  const emailData = document.getElementById("registerEmail").value;
+  const passwordData = document.getElementById("registerPassword").value;
 
   const data = { email: emailData, password: passwordData };
 
@@ -143,9 +143,42 @@ function Login(event) {
     });
 }
 
-var pokemonArray = [];
-const pokemonCardTemplate = document.querySelector("[pokemon-card-template]");
-const pokemonCardContainer = document.querySelector("[pokemon-card-container]");
+function Upload(event) {
+  event.preventDefault();
+
+  const nameData = document.getElementById("textUpload").value;
+  const fileData = document.getElementById("fileUpload").files[0];
+
+  const data = {
+    name: nameData,
+    url: fileData,
+  };
+
+  const formData = new FormData();
+  formData.append("name", data.name);
+  formData.append("url", data.url);
+
+  fetch("http://localhost:5500/pokemons", {
+    method: "POST",
+    headers: {
+      token: window.localStorage.getItem("token"),
+    },
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((responseData) => {
+      if (!responseData.error) {
+        window.location.reload();
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+
+// var pokemonArray = [];
+// const pokemonCardTemplate = document.querySelector("[pokemon-card-template]");
+// const pokemonCardContainer = document.querySelector("[pokemon-card-container]");
 
 // fetch("https://pokeapi.co/api/v2/pokemon?limit=150&offset=0", {
 //   method: "GET",
@@ -188,13 +221,13 @@ const pokemonCardContainer = document.querySelector("[pokemon-card-container]");
 //     console.error("Error:", error);
 //   });
 
-var searchInput = document.querySelector("[poke-search]");
+// var searchInput = document.querySelector("[poke-search]");
 
-searchInput.addEventListener("input", (e) => {
-  const value = e.target.value;
-  console.log(pokemonMap);
-  pokemonMap.forEach((pokemon) => {
-    const isVisible = pokemon.name.toLowerCase().includes(value);
-    pokemon.element.classList.toggle("hide", !isVisible);
-  });
-});
+// searchInput.addEventListener("input", (e) => {
+//   const value = e.target.value;
+//   console.log(pokemonMap);
+//   pokemonMap.forEach((pokemon) => {
+//     const isVisible = pokemon.name.toLowerCase().includes(value);
+//     pokemon.element.classList.toggle("hide", !isVisible);
+//   });
+// });

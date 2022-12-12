@@ -92,7 +92,7 @@ function Register(event) {
 
   const data = { email: emailData, password: passwordData };
 
-  fetch("http://localhost:5500/authenticate/register", {
+  fetch("https://xbox-backend-render.onrender.com/authenticate/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -124,7 +124,7 @@ function Login(event) {
 
   const data = { email: emailData, password: passwordData };
 
-  fetch("http://localhost:5500/authenticate/login", {
+  fetch("https://xbox-backend-render.onrender.com/authenticate/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -163,7 +163,7 @@ function Upload(event) {
   formData.append("name", data.name);
   formData.append("url", data.url);
 
-  fetch("http://localhost:5500/pokemons", {
+  fetch("https://xbox-backend-render.onrender.com/pokemons", {
     method: "POST",
     headers: {
       token: window.localStorage.getItem("token"),
@@ -186,7 +186,7 @@ const pokemonCardTemplate = document.querySelector("[pokemon-card-template]");
 const pokemonCardContainer = document.querySelector("[pokemon-card-container]");
 
 function loadPokemons() {
-  fetch("http://localhost:5500/pokemons", {
+  fetch("https://xbox-backend-render.onrender.com/pokemons", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

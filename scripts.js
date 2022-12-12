@@ -23,6 +23,7 @@ if (localStorage.getItem("token") == null) {
   document.getElementById("sairLogout").classList.remove("hidden");
   document.getElementById("search").classList.add("visible");
   document.getElementById("entrarLogin").classList.add("hidden");
+  loadPokemons();
 }
 
 function resetInputs() {
@@ -111,6 +112,8 @@ function Register(event) {
     .catch((error) => {
       console.error("Error:", error);
     });
+
+  loadPokemons();
 }
 
 function Login(event) {
@@ -141,6 +144,8 @@ function Login(event) {
     .catch((error) => {
       console.error("Error:", error);
     });
+
+  loadPokemons();
 }
 
 function Upload(event) {
@@ -176,58 +181,48 @@ function Upload(event) {
     });
 }
 
-// var pokemonArray = [];
-// const pokemonCardTemplate = document.querySelector("[pokemon-card-template]");
-// const pokemonCardContainer = document.querySelector("[pokemon-card-container]");
+var pokemonArray = [];
+const pokemonCardTemplate = document.querySelector("[pokemon-card-template]");
+const pokemonCardContainer = document.querySelector("[pokemon-card-container]");
 
-// fetch("https://pokeapi.co/api/v2/pokemon?limit=150&offset=0", {
-//   method: "GET",
-//   headers: {
-//     "Content-Type": "application/json",
-//   },
-// })
-//   .then((response) => response.json())
-//   .then((data) => {
-//     pokemonArray = data.results;
-//     pokemonMap = pokemonArray.map((pokemon) => {
-//       const card = pokemonCardTemplate.content.cloneNode(true).children[0];
-//       const pokeName = card.querySelector("[poke-name]");
+function loadPokemons() {
+  fetch("http://localhost:5500/pokemons", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      token: window.localStorage.getItem("token"),
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      pokemonArray = data;
+      pokemonMap = pokemonArray.map((pokemon) => {
+        const card = pokemonCardTemplate.content.cloneNode(true).children[0];
+        const pokeName = card.querySelector("[poke-name]");
 
-//       pokeName.textContent = pokemon.name;
+        pokeName.textContent = pokemon.name;
 
-//       var pokelink = pokemon.url;
+        const pokeImage = card.querySelector("[poke-image]");
+        pokeImage.src = pokemon.url;
 
-//       fetch(pokelink, {
-//         method: "GET",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//       })
-//         .then((response) => response.json())
-//         .then((data) => {
-//           const pokeImage = card.querySelector("[poke-image]");
-//           pokeImage.src = data.sprites.front_default;
-//           pokemonCardContainer.append(card);
-//         })
-//         .catch((error) => {
-//           console.error("Error:", error);
-//         });
+        pokemonCardContainer.append(card);
 
-//       return { name: pokemon.name, element: card };
-//     });
-//   })
+        return { name: pokemon.name, element: card };
+      });
+    })
 
-//   .catch((error) => {
-//     console.error("Error:", error);
-//   });
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
 
-// var searchInput = document.querySelector("[poke-search]");
+var searchInput = document.querySelector("[poke-search]");
 
-// searchInput.addEventListener("input", (e) => {
-//   const value = e.target.value;
-//   console.log(pokemonMap);
-//   pokemonMap.forEach((pokemon) => {
-//     const isVisible = pokemon.name.toLowerCase().includes(value);
-//     pokemon.element.classList.toggle("hide", !isVisible);
-//   });
-// });
+searchInput.addEventListener("input", (e) => {
+  const value = e.target.value;
+  pokemonMap.forEach((pokemon) => {
+    const isVisible = pokemon.name.toLowerCase().includes(value);
+    pokemon.element.classList.toggle("hide", !isVisible);
+  });
+});

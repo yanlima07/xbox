@@ -83,6 +83,7 @@
 
 .card img {
   height: 15vh;
+  max-width: 250px;
 }
 
 .visible {

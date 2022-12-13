@@ -13,6 +13,9 @@ const registerEmailProblem = document.getElementById("registerEmailProblem");
 const entrarLogin = document.getElementById("entrarLogin");
 const sairLogout = document.getElementById("sairLogout");
 
+const serverLink = "https://xbox-backend-render.onrender.com";
+const serverLocal = "http://localhost:5500";
+
 var emailFlag = false;
 
 if (localStorage.getItem("token") == null) {
@@ -92,7 +95,7 @@ function Register(event) {
 
   const data = { email: emailData, password: passwordData };
 
-  fetch("https://xbox-backend-render.onrender.com/authenticate/register", {
+  fetch(serverLink + "/authenticate/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -124,7 +127,7 @@ function Login(event) {
 
   const data = { email: emailData, password: passwordData };
 
-  fetch("https://xbox-backend-render.onrender.com/authenticate/login", {
+  fetch(serverLink + "/authenticate/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -163,7 +166,7 @@ function Upload(event) {
   formData.append("name", data.name);
   formData.append("url", data.url);
 
-  fetch("https://xbox-backend-render.onrender.com/pokemons", {
+  fetch(serverLink + "/pokemons", {
     method: "POST",
     headers: {
       token: window.localStorage.getItem("token"),
@@ -186,7 +189,7 @@ const pokemonCardTemplate = document.querySelector("[pokemon-card-template]");
 const pokemonCardContainer = document.querySelector("[pokemon-card-container]");
 
 function loadPokemons() {
-  fetch("https://xbox-backend-render.onrender.com/pokemons", {
+  fetch(serverLink + "/pokemons", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -195,7 +198,6 @@ function loadPokemons() {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       pokemonArray = data;
       pokemonMap = pokemonArray.map((pokemon) => {
         const card = pokemonCardTemplate.content.cloneNode(true).children[0];
@@ -218,11 +220,48 @@ function loadPokemons() {
 }
 
 var searchInput = document.querySelector("[poke-search]");
+var searchName;
 
 searchInput.addEventListener("input", (e) => {
   const value = e.target.value;
+  searchName = e.target.value;
   pokemonMap.forEach((pokemon) => {
     const isVisible = pokemon.name.toLowerCase().includes(value);
     pokemon.element.classList.toggle("hide", !isVisible);
   });
 });
+
+function searchPokemon(event) {
+  event.preventDefault();
+
+  pokemonCardContainer.innerHTML = "";
+
+  fetch(serverLink + "/searchPokemons/?name=" + searchName, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      token: window.localStorage.getItem("token"),
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      pokemonArray = data;
+      pokemonMap = pokemonArray.map((pokemon) => {
+        const card = pokemonCardTemplate.content.cloneNode(true).children[0];
+        const pokeName = card.querySelector("[poke-name]");
+
+        pokeName.textContent = pokemon.name;
+
+        const pokeImage = card.querySelector("[poke-image]");
+        pokeImage.src = pokemon.url;
+
+        pokemonCardContainer.append(card);
+
+        return { name: pokemon.name, element: card };
+      });
+    })
+
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}

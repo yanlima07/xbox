@@ -325,13 +325,15 @@
         <h1>Pokémon Search</h1>
         <div class="searchBarContainer">
           <h1 id="buttonAddPokemon">+</h1>
-          <input
-            type="search"
-            class="searchBar"
-            id="searchBar"
-            placeholder="Pesquise o Pokémon pelo nome"
-            poke-search
-          />
+          <form onsubmit="searchPokemon(event)">
+            <input
+              type="search"
+              class="searchBar"
+              id="searchBar"
+              placeholder="Pesquise o Pokémon pelo nome"
+              poke-search
+            />
+          </form>
           <img src="assets/zoom.svg" alt="pesquisar" class="zoom" />
         </div>
       </div>
